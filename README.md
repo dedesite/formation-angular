@@ -45,3 +45,5 @@ To get more help on the Angular CLI use `ng help` or go check out the
 
 favicon created from :
 https://commons.wikimedia.org/wiki/File:Nuvola_apps_edu_miscellaneous_Cyrilic.svg
+Child picture :
+http://maxpixel.freegreatpicture.com/Children-Cute-Child-People-Girl-Kid-Happy-2815780
