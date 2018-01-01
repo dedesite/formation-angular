@@ -23,9 +23,9 @@
     *ngFor="let row of [0, 1, 2]"
     class="row no-gutters grapheme-row justify-content-center">
     <div
-      *ngFor="let rep of graphemeRow(row)"
+      *ngFor="let grapheme of graphemeRow(row)"
       class="col-1 box">
-      <board-grapheme class="in-box" [representation]="rep"></board-grapheme>
+      <board-grapheme class="in-box" [representation]="grapheme.representation"></board-grapheme>
     </div>
   </div>
   <div class="text-center word-row">
