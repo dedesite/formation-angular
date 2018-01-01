@@ -1,8 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
+/*
+ * Tricks found in http://www.mademyday.de/css-height-equals-width-with-pure-css.html
+ * I struggle several hours before finding this solution...
+ */
+.box:before {
+  content: "";
+  display: block;
+  padding-top: 100%; /* initial ratio of 1:1*/
+}
+
+.in-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
 @font-face {
   font-family: "Cursive standard";
-  src: url("assets/fonts/Cursive standard Bold.ttf");
+  src: url("assets/fonts/Cursive-standard-Bold.ttf");
 }
 
 /*

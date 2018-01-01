@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row no-gutters word-row">
+    <div class="col-1">
+      <div class="text-center"><word-img [name]="currentChild"></word-img></div>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-2">
+      <div class="text-center"><word-img [name]="currentWord"></word-img></div>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-1">
+      <icon-button name="grid-two-up"></icon-button>
+    </div>
+    <div class="col-1">
+      <icon-button name="random"></icon-button>
+    </div>
+    <div class="col-2">
+      <reveal-button></reveal-button>
+    </div>
+  </div>
+  <word [word]="currentWord"></word>
+  <div
+    *ngFor="let row of [0, 1, 2]"
+    class="row no-gutters grapheme-row justify-content-center">
+    <div
+      *ngFor="let rep of graphemeRow(row)"
+      class="col-1 box">
+      <board-grapheme class="in-box" [representation]="rep"></board-grapheme>
+    </div>
+  </div>
+  <div class="text-center word-row">
+    <icon-button name="arrow-thick-right" text="Ou, Oi, Eau"></icon-button>
+  </div>
+</div>

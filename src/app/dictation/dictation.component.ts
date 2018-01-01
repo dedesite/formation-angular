@@ -1,12 +1,13 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: "dictation",
+  templateUrl: "./dictation.component.html",
+  styleUrls: ["./dictation.component.css"]
 })
-export class AppComponent {
-  word = "pamplemousse";
+export class DictationComponent {
+  currentWord = "pamplemousse";
+  currentChild = "child";
   boardGraphemes = Array.from("aeéèêiïîoôuybcçdfghjklmnpqrstvwxz");
 
   graphemeRow(num: number) {
