@@ -5,6 +5,8 @@ import {
   GraphemeService,
   LanguageGraphemes
 } from "../grapheme/grapheme.service";
+import { Word } from "../word/word.model";
+import { WordService } from "../word/word.service";
 
 @Component({
   selector: "dictation",
@@ -12,12 +14,16 @@ import {
   styleUrls: ["./dictation.component.css"]
 })
 export class DictationComponent implements OnInit {
-  currentWord = "pamplemousse";
+  currentWord: Word;
+  words: Word[];
   currentChild = "child";
   graphemes: LanguageGraphemes;
   boardGraphemes: Grapheme[];
 
-  constructor(private graphemeService: GraphemeService) {}
+  constructor(
+    private graphemeService: GraphemeService,
+    private wordService: WordService
+  ) {}
 
   ngOnInit() {
     this.graphemes = this.graphemeService.getGraphemes();
@@ -25,6 +31,15 @@ export class DictationComponent implements OnInit {
       ...this.graphemes.vowels,
       ...this.graphemes.consonants
     ];
+    this.wordService.getWords().subscribe(words => {
+      this.words = words;
+      this.setRandomCurrentWord();
+    });
+  }
+
+  setRandomCurrentWord() {
+    const pos = Math.floor(Math.random() * this.words.length);
+    this.currentWord = this.words[pos];
   }
 
   graphemeRow(num: number) {

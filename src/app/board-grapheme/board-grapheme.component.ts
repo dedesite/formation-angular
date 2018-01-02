@@ -4,7 +4,7 @@ import { GraphemeComponent } from "../grapheme/grapheme.component";
 
 @Component({
   selector: "board-grapheme",
-  template: "{{representation}}",
+  template: "{{grapheme.representation}}",
   styleUrls: [
     "./board-grapheme.component.css",
     "../grapheme/grapheme.component.css"

@@ -5,27 +5,27 @@
     </div>
     <div class="col-4"></div>
     <div class="col-2">
-      <div class="text-center"><word-img [name]="currentWord"></word-img></div>
+      <div class="text-center"><word-img *ngIf="currentWord" [name]="currentWord.fileName"></word-img></div>
     </div>
     <div class="col-1"></div>
     <div class="col-1">
       <icon-button name="grid-two-up"></icon-button>
     </div>
     <div class="col-1">
-      <icon-button name="random"></icon-button>
+      <icon-button name="random" (click)="setRandomCurrentWord()"></icon-button>
     </div>
     <div class="col-2">
       <reveal-button></reveal-button>
     </div>
   </div>
-  <word [word]="currentWord"></word>
+  <word *ngIf="currentWord" [word]="currentWord"></word>
   <div
     *ngFor="let row of [0, 1, 2]"
     class="row no-gutters grapheme-row justify-content-center">
     <div
       *ngFor="let grapheme of graphemeRow(row)"
       class="col-1 box">
-      <board-grapheme class="in-box" [representation]="grapheme.representation"></board-grapheme>
+      <board-grapheme class="in-box" [grapheme]="grapheme"></board-grapheme>
     </div>
   </div>
   <div class="text-center word-row">

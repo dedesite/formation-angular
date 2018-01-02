@@ -1,10 +1,12 @@
 import { Component, Input } from "@angular/core";
 
+import { Grapheme } from "./grapheme.model";
+
 @Component({
   selector: "grapheme",
-  template: "{{representation}}",
+  template: "{{grapheme.representation}}",
   styleUrls: ["./grapheme.component.css"]
 })
 export class GraphemeComponent {
-  @Input() representation: string;
+  @Input() grapheme: Grapheme;
 }
