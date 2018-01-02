@@ -16,4 +16,8 @@ export class WordGrapheme extends Grapheme {
   get isFound() {
     return this._isFound;
   }
+
+  get isMute() {
+    return this._isMute;
+  }
 }

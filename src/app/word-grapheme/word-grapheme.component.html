@@ -1,1 +1,3 @@
-<div *ngIf="grapheme.isFound">{{grapheme.representation}}</div>
+<div (click)="playPhonemSound()" class="stretch">
+  <div *ngIf="grapheme.isFound">{{grapheme.representation}}</div>
+</div>

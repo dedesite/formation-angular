@@ -5,6 +5,7 @@ import {
   GraphemeService,
   LanguageGraphemes
 } from "../grapheme/grapheme.service";
+import { SoundService } from "../sound/sound.service";
 import { Word } from "../word/word.model";
 import { WordService } from "../word/word.service";
 
@@ -22,7 +23,8 @@ export class DictationComponent implements OnInit {
 
   constructor(
     private graphemeService: GraphemeService,
-    private wordService: WordService
+    private wordService: WordService,
+    private soundService: SoundService
   ) {}
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class DictationComponent implements OnInit {
   setRandomCurrentWord() {
     const pos = Math.floor(Math.random() * this.words.length);
     this.currentWord = this.words[pos];
+    this.soundService.playSound(`words/${this.currentWord.fileName}`);
   }
 
   graphemeRow(num: number) {

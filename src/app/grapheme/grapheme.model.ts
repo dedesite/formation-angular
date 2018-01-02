@@ -5,7 +5,7 @@ export class Grapheme {
     private graphemeType: string,
     //A grapheme can represent sevral phonems
     //ie : the letter "e" in french
-    private phonems: string[],
+    private _phonems: string[],
     private _representation: string
   ) {
     switch (this.graphemeType) {
@@ -26,5 +26,9 @@ export class Grapheme {
 
   get representation() {
     return this._representation;
+  }
+
+  get phonems() {
+    return this._phonems;
   }
 }

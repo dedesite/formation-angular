@@ -13,4 +13,10 @@ import { WordGrapheme } from "./word-grapheme.model";
 })
 export class WordGraphemeComponent extends GraphemeComponent {
   @Input() grapheme: WordGrapheme;
+
+  playPhonemSound() {
+    if (!this.grapheme.isMute) {
+      super.playPhonemSound();
+    }
+  }
 }
