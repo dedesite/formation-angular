@@ -18,9 +18,10 @@ export class WordGraphemeService {
     if (description.length > 1 && !description.includes("_")) {
       return "complex";
     }
-    return this.graphemes.vowels.indexOf(description.charAt(0))
-      ? "vowel"
-      : "consonant";
+    const isVowel = this.graphemes.vowels.some(
+      v => v.representation === description.charAt(0)
+    );
+    return isVowel ? "vowel" : "consonant";
   }
 
   // graphems that sounds differently contains a '_'
