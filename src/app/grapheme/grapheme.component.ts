@@ -11,9 +11,9 @@ import { SoundService } from "../sound/sound.service";
 export class GraphemeComponent {
   @Input() grapheme: Grapheme;
 
-  constructor(private soundService: SoundService) {}
+  constructor(protected soundService: SoundService) {}
 
   playPhonemSound() {
-    this.soundService.playSound(`phonems/${this.grapheme.phonems[0]}`);
+    return this.soundService.playSound(`phonems/${this.grapheme.phonems[0]}`);
   }
 }

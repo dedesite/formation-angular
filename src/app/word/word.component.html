@@ -2,6 +2,9 @@
   <div
     *ngFor="let wordGrapheme of word.graphemes"
     class="col-1 box">
-    <word-grapheme class="in-box" [grapheme]="wordGrapheme"></word-grapheme>
+    <word-grapheme
+    class="in-box"
+    [grapheme]="wordGrapheme"
+    (founded)="onFound($event)"></word-grapheme>
   </div>
 </div>

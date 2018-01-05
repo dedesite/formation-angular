@@ -22,7 +22,7 @@
       <reveal-button></reveal-button>
     </div>
   </div>
-  <word *ngIf="currentWord" [word]="currentWord"></word>
+  <word *ngIf="currentWord" [word]="currentWord" (founded)="onWordFound($event)"></word>
   <div
     *ngFor="let row of [0, 1, 2]"
     class="row no-gutters grapheme-row justify-content-center">

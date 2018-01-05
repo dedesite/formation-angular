@@ -50,4 +50,8 @@ export class DictationComponent implements OnInit {
     const start = num * rowLength;
     return this.boardGraphemes.slice(start, start + rowLength);
   }
+
+  onWordFound(word: Word) {
+    this.setRandomCurrentWord();
+  }
 }
