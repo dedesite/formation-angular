@@ -12,6 +12,7 @@ import { WordComponent } from "./word/word.component";
 import { RoundedImgComponent } from "./rounded-img/rounded-img.component";
 import { IconButtonComponent } from "./icon-button/icon-button.component";
 import { RevealButtonComponent } from "./reveal-button/reveal-button.component";
+import { BoardSwitchComponent } from "./board-switch/board-switch.component";
 
 import { GraphemeService } from "./grapheme/grapheme.service";
 import { WordGraphemeService } from "./word-grapheme/word-grapheme.service";
@@ -34,7 +35,8 @@ import { DraggableDirective } from "./dnd/draggable.directive";
     IconButtonComponent,
     RevealButtonComponent,
     DroppableDirective,
-    DraggableDirective
+    DraggableDirective,
+    BoardSwitchComponent
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [GraphemeService, WordGraphemeService, WordService, SoundService],

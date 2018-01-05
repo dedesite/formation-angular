@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import { Grapheme } from "../grapheme/grapheme.model";
+import { GraphemeType } from "../grapheme/grapheme-type.model";
 import {
   GraphemeService,
   LanguageGraphemes
@@ -8,11 +9,6 @@ import {
 import { SoundService } from "../sound/sound.service";
 import { Word } from "../word/word.model";
 import { WordService } from "../word/word.service";
-
-enum GraphemeType {
-  simple,
-  complex
-}
 
 @Component({
   selector: "dictation",
@@ -26,8 +22,6 @@ export class DictationComponent implements OnInit {
   graphemes: LanguageGraphemes;
   boardGraphemes: Grapheme[];
   boardGraphemesType: GraphemeType = GraphemeType.simple;
-  boardButtonText = "Ou, Oi, Eau";
-  boardArrowOrientation = "right";
 
   constructor(
     private graphemeService: GraphemeService,
@@ -47,19 +41,15 @@ export class DictationComponent implements OnInit {
     });
   }
 
-  toggleBoardGraphemes() {
+  switchBoardGraphemes() {
     if (this.boardGraphemesType === GraphemeType.simple) {
       this.boardGraphemes = this.graphemes.complexes;
-      this.boardButtonText = "a, â, e";
-      this.boardArrowOrientation = "left";
       this.boardGraphemesType = GraphemeType.complex;
     } else {
       this.boardGraphemes = [
         ...this.graphemes.vowels,
         ...this.graphemes.consonants
       ];
-      this.boardButtonText = "Ou, Oi, Eau";
-      this.boardArrowOrientation = "right";
       this.boardGraphemesType = GraphemeType.simple;
     }
   }

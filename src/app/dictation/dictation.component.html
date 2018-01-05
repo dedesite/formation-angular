@@ -33,6 +33,6 @@
     </div>
   </div>
   <div class="text-center word-row">
-    <icon-button name="arrow-thick-{{boardArrowOrientation}}" text=" {{boardButtonText}}" (click)="toggleBoardGraphemes()"></icon-button>
+    <board-switch [graphemeType]="boardGraphemesType" (switch)="switchBoardGraphemes()"></board-switch>
   </div>
 </div>
