@@ -18,6 +18,9 @@ import { WordGraphemeService } from "./word-grapheme/word-grapheme.service";
 import { WordService } from "./word/word.service";
 import { SoundService } from "./sound/sound.service";
 
+import { DroppableDirective } from "./dnd/droppable.directive";
+import { DraggableDirective } from "./dnd/draggable.directive";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import { SoundService } from "./sound/sound.service";
     WordComponent,
     RoundedImgComponent,
     IconButtonComponent,
-    RevealButtonComponent
+    RevealButtonComponent,
+    DroppableDirective,
+    DraggableDirective
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [GraphemeService, WordGraphemeService, WordService, SoundService],
