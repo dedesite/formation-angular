@@ -1,6 +1,7 @@
 <div
   (mousedown)="playPhonemSound()"
   class="grapheme board-grapheme"
+  [style.color]="grapheme.color"
   appDraggable [data]="grapheme"
   >
   {{grapheme.representation}}
