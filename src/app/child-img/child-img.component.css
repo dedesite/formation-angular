@@ -1,0 +1,39 @@
+.cursive {
+  font-family: "Cursive standard";
+  font-size: 1rem;
+}
+
+/* Xtra Small devices (below 576px) */
+@media (min-width: 0px) {
+  .cursive {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .cursive {
+    font-size: 1rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .cursive {
+    font-size: 1.2rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .cursive {
+    font-size: 1.5rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .cursive {
+    font-size: 2rem;
+  }
+}

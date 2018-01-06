@@ -2,6 +2,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 
+import { AppRoutingModule } from "./app-routing.module";
+
 import { AppComponent } from "./app.component";
 import { BoardGraphemeComponent } from "./board-grapheme/board-grapheme.component";
 import { DictationComponent } from "./dictation/dictation.component";
@@ -13,6 +15,8 @@ import { RoundedImgComponent } from "./rounded-img/rounded-img.component";
 import { IconButtonComponent } from "./icon-button/icon-button.component";
 import { RevealButtonComponent } from "./reveal-button/reveal-button.component";
 import { BoardSwitchComponent } from "./board-switch/board-switch.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { ChildImgComponent } from "./child-img/child-img.component";
 
 import { GraphemeService } from "./grapheme/grapheme.service";
 import { WordGraphemeService } from "./word-grapheme/word-grapheme.service";
@@ -36,9 +40,11 @@ import { DraggableDirective } from "./dnd/draggable.directive";
     RevealButtonComponent,
     DroppableDirective,
     DraggableDirective,
-    BoardSwitchComponent
+    BoardSwitchComponent,
+    DashboardComponent,
+    ChildImgComponent
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [GraphemeService, WordGraphemeService, WordService, SoundService],
   bootstrap: [AppComponent]
 })
