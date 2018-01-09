@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
 
 import { Grapheme } from "../grapheme/grapheme.model";
 import { GraphemeType } from "../grapheme/grapheme-type.model";
@@ -9,6 +11,8 @@ import {
 import { SoundService } from "../sound/sound.service";
 import { Word } from "../word/word.model";
 import { WordService } from "../word/word.service";
+import { ChildService } from "../child/child.service";
+import { Child } from "../child/child.model";
 
 @Component({
   selector: "dictation",
@@ -16,9 +20,9 @@ import { WordService } from "../word/word.service";
   styleUrls: ["./dictation.component.css"]
 })
 export class DictationComponent implements OnInit {
+  currentChild: Child;
   currentWord: Word;
   words: Word[];
-  currentChild = "child";
   graphemes: LanguageGraphemes;
   boardGraphemes: Grapheme[];
   boardGraphemesType: GraphemeType = GraphemeType.simple;
@@ -26,10 +30,21 @@ export class DictationComponent implements OnInit {
   constructor(
     private graphemeService: GraphemeService,
     private wordService: WordService,
-    private soundService: SoundService
+    private childService: ChildService,
+    private soundService: SoundService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get("id");
+
+    if (id !== null) {
+      this.childService
+        .getChild(+id)
+        .subscribe(child => (this.currentChild = child));
+    }
+
     this.graphemes = this.graphemeService.getGraphemes();
     this.boardGraphemes = [
       ...this.graphemes.vowels,

@@ -1,0 +1,8 @@
+<icon-button name="arrow-thick-left" (click)="goBack()"></icon-button>
+<ul>
+  <li *ngFor="let child of children">
+    {{child.name}}
+    <icon-button title="Éditer" name="pencil" routerLink="/child/{{child.id}}"></icon-button>
+    <icon-button title="Supprimer" name="circle-x" (click)="deleteChild(child)"></icon-button>
+  </li>
+</ul>

@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -22,9 +23,12 @@ import { GraphemeService } from "./grapheme/grapheme.service";
 import { WordGraphemeService } from "./word-grapheme/word-grapheme.service";
 import { WordService } from "./word/word.service";
 import { SoundService } from "./sound/sound.service";
+import { ChildService } from "./child/child.service";
 
 import { DroppableDirective } from "./dnd/droppable.directive";
 import { DraggableDirective } from "./dnd/draggable.directive";
+import { ChildComponent } from "./child/child.component";
+import { AdminChildComponent } from './admin-child/admin-child.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +46,18 @@ import { DraggableDirective } from "./dnd/draggable.directive";
     DraggableDirective,
     BoardSwitchComponent,
     DashboardComponent,
-    ChildImgComponent
+    ChildImgComponent,
+    ChildComponent,
+    AdminChildComponent
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
-  providers: [GraphemeService, WordGraphemeService, WordService, SoundService],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
+  providers: [
+    GraphemeService,
+    WordGraphemeService,
+    WordService,
+    SoundService,
+    ChildService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

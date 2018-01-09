@@ -1,1 +1,13 @@
-<a routerLink="/dictation">Dashboard</a>
+<div class="container padding-top">
+  <div class="row no-gutters">
+    <div
+      *ngFor="let child of children"
+      class="col-1"
+    >
+      <child-img [name]="child.name" link="/dictation/{{child.id}}"></child-img>
+    </div>
+    <div class="col-1 text-center"><icon-button name="plus" routerLink="/child"></icon-button></div>
+    <div class="col-1 text-center"><icon-button name="wrench" routerLink="/admin"></icon-button></div>
+  </div>
+</div>
+

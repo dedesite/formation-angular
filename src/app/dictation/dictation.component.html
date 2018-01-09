@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row no-gutters row-margin-top">
     <div class="col-1">
-      <div class="text-center"><child-img [name]="currentChild" link="/"></child-img></div>
+      <div class="text-center" *ngIf="currentChild"><child-img [name]="currentChild.name" link="/"></child-img></div>
     </div>
     <div class="col-4"></div>
     <div class="col-2">
