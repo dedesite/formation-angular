@@ -16,11 +16,283 @@
 ## Composants et templating
 
 -----
-# Sommaire
 
-* [ES6 et TypeScript](es6_typescript.html)
-* [Vue d'ensemble d'Angular](vue_d_ensemble_angular.html)
-* [Composants et templating](composants_templating.html)
+# Composants
+
+Inspiré des WebComponent
+
+Testables
+
+Découplés de l'application
+
+-----
+
+# Fichiers
+
+Une classe TypeScript (fichier `.ts`)
+
+Un ou plusieurs `.css`
+
+Un ou plusieurs `.html`
+
+-----
+
+# Classe #1
+
+Directive `@Component`
+
+Module ES6
+
+Injection de dépendances
+
+-----
+
+# Classe #2
+
+Directive `@Input()`
+
+Directive `@Output()`
+
+Lifecycle Hook `OnInit`
+
+-----
+
+# CSS
+
+Classes spécifiques au composant
+
+Selecteurs `:host` et `:host-context`
+
+Plusieurs fichiers possibles
+
+-----
+
+# Html
+
+Création d'un tag Html
+
+Nouvelles propriété de DOM
+
+Nouveaux événements
+
+-----
+
+# Communication inter composants
+
+Propriétés `@Input` Parent => enfant
+
+Propriétés `@Output` Parent <= enfant
+
+Variable locale de template `#var` Parent => enfant
+
+Directive `@ViewChild` Parent => enfant
+
+Via un Service
+
+-----
+
+# Templating
+
+Intégré à html
+
+Peu de structure de controle
+
+Extension des propriétés DOM très particulière
+
+-----
+
+# Template expression
+
+Inpterpolation via `{{}}` `<h1>{{title}}</h1>` => escape les tags
+
+Property binding via `""` `<span [hidden]="isUnchanged">changed</span>` => enlève les tags
+
+Local au template et au composant (pas de Math.max)
+
+
+-----
+
+# Conseils
+
+Pas de changement d'état
+
+Rapidité => beaucoup de rafraichissement possibles
+
+Simplicité => fonction si besoin
+
+Idempotence => pas de changement de valeur
+
+-----
+
+# Template statement
+
+Réponse à un évenement
+
+A droit d'un binding d'event `(click)="onClick()"`
+
+Local au template et au composant
+
+-----
+
+# Data-binding
+
+One-way données => vue :
+
+`{{expression}}` et `[target]="expression"`
+
+One-way vue => données :
+
+`(target)="statement"`
+
+Two-way vue <=> données :
+
+`[(target)]="expression"`
+
+-----
+
+# Attribut HTML vs. propriétés DOM
+
+Attributs statiques
+
+Attributs valeur initiale
+
+Propriétés dynamiques
+
+Pas de matching 1:1
+
+-----
+
+# Binding targets : propriétés
+
+Propriétés d'élément Html :
+
+`&lt;img [src]="wordImageUrl"&gt;`
+
+
+Propriétés de composant :
+
+`&lt;word [word]="currentWord"&gt;&lt;/word&gt;`
+
+Propriétés de directives :
+
+`&lt;div appDraggable [data]="grapheme"&gt;`
+
+-----
+
+# Binding targets : event
+
+Évenement du dom :
+
+`&lt;button (click)="onSave()"&gt;Save&lt;/button&gt;`
+
+Évenement de composant :
+
+`&lt;word-grapheme (founded)="onFound()"&gt;&lt;/word-grapheme&gt;`
+
+Évenement de directives :
+
+`&lt;div appDroppable (dropped)="onDrop(grapheme)"&gt;`
+
+-----
+
+# Autres Binding
+
+Sur attributs (l'exception) :
+
+`&lt;button [attr.aria-label]="help"&gt;help&lt;/button&gt;`
+
+Activation conditionnel d'une classe CSS :
+
+`&lt;div [class.special]="isSpecial"&gt;Special&lt;/div&gt;`
+
+Définition d'une propriété de style :
+
+`&lt;div [style.color]="grapheme.color"&gt;`
+
+-----
+
+# Attention
+
+Ne pas oublier les `()` et `[]`
+
+Sauf pour binding statique :
+
+`&lt;word word="pamplemousse.jpg"&gt;&lt;/word&gt;
+
+Ou en utilisant l'interpolation :
+
+`&lt;img src="{{imageUrl}}"&gt;`
+
+-----
+
+# Two way data binding #1
+
+`&lt;input [(ngModel)]="child.name"&gt;`
+
+Sucre syntaxique
+
+Un input `[]` et un event `()`
+
+
+-----
+
+# Two way data binging #2
+
+Event doit avoir même nom que propriété + `Change`
+
+`&lt;app-sizer [(size)]="fontSizePx"&gt;`
+
+egale
+
+`&lt;app-sizer [size]="fontSizePx" (sizeChange)="fontSizePx=$event"&gt;`
+
+-----
+
+# Attribute directives
+
+Peuvent être créées
+
+`ngClass` et `ngStyle` built-in pour l'activation de plusieurs class css et styles
+
+`&lt;div [ngClass]="currentClasses"&gt;`
+
+`ngModel` two-way binding des `input`
+
+`&lt;input [(ngModel)]="child.name"&gt;`
+
+-----
+
+# Structural directives
+
+`ngIf`
+
+`ngFor`
+
+`ngSwitch`
+
+-----
+
+# Variables de templates
+
+Variables locales
+
+Variables "référence" `#var`
+
+-----
+
+# Template expression operator
+
+Opérateur pipe `|`
+
+`{{title | uppercase}}`
+
+Opérateur "safe navigation" '?'
+
+`Prénom de l'enfant {{child?.name}}`
+
+non-null assertion '!' => spécifique
+
+
 </div>
 </div>
 <script type="text/javascript" src="js/highlight.min.js"></script>
