@@ -87,9 +87,20 @@ Nouveaux événements
 
 -----
 
-# Communication inter composants
+## Communication inter composants
+### Sens parent => enfant
+#### Propriétés `@Input`
 
-Propriétés `@Input` Parent => enfant
+Dans la classe `.ts`
+
+    @Input()
+    name: string;
+
+Dans le template `.html`
+
+    &lt;word-img [name]="currentWord"&gt;&lt;/word-img&gt;
+
+-----
 
 Propriétés `@Output` Parent <= enfant
 
