@@ -102,13 +102,49 @@ Dans le template `.html`
 
 -----
 
-Propriétés `@Output` Parent <= enfant
+## Communication inter composants
+### Sens enfant => parent
+#### Propriétés `@Output`
 
-Variable locale de template `#var` Parent => enfant
+Déclaration d'événement dans la classe :
 
-Directive `@ViewChild` Parent => enfant
+    @Output("founded") isFound: EventEmitter<WordGrapheme> = new EventEmitter();
 
-Via un Service
+Dans le template `.html`
+
+    &lt;word-grapheme (founded)="onFound($event)"&gt;
+
+-----
+
+## Communication inter composants
+### Sens enfant => parent
+#### Variable de référence (`#var`)
+
+Uniquement utilisable dans les templates
+
+    &lt;input #phone placeholder="phone number"&gt;
+    &lt;button (click)="callPhone(phone.value)"&gt;Call&lt;/button&gt;
+
+-----
+
+## Communication inter composants
+### Sens enfant => parent
+#### Directive `@ViewChild`
+
+Dans la classe
+
+    import { ViewChild } from '@angular/core';
+      //..
+      @ViewChild(CountdownTimerComponent)
+      private timerComponent: CountdownTimerComponent;
+
+-----
+
+## Communication inter composants
+
+Via un Service partagé
+
+Entre parent et enfants
 
 -----
 
@@ -124,12 +160,15 @@ Extension des propriétés DOM très particulière
 
 # Template expression
 
-Inpterpolation via `{{}}` `<h1>{{title}}</h1>` => escape les tags
+Inpterpolation via `{{}}` => escape les tags
 
-Property binding via `""` `<span [hidden]="isUnchanged">changed</span>` => enlève les tags
+    &lt;h1&gt;{{title}}&lt;/h1&gt;
+
+Property binding via `""` => enlève les tags
+
+    &lt;span [hidden]="isUnchanged"&gt;changed&lt;/span&gt;
 
 Local au template et au composant (pas de Math.max)
-
 
 -----
 
@@ -149,7 +188,9 @@ Idempotence => pas de changement de valeur
 
 Réponse à un évenement
 
-A droit d'un binding d'event `(click)="onClick()"`
+A droite d'un binding d'event
+
+    (click)="onClick()"
 
 Local au template et au composant
 
@@ -157,15 +198,15 @@ Local au template et au composant
 
 # Data-binding
 
-One-way données => vue :
+One-way : Données => Vue :
 
 `{{expression}}` et `[target]="expression"`
 
-One-way vue => données :
+One-way : Vue => Données :
 
 `(target)="statement"`
 
-Two-way vue <=> données :
+Two-way : Vue <=> Données :
 
 `[(target)]="expression"`
 
@@ -187,16 +228,15 @@ Pas de matching 1:1
 
 Propriétés d'élément Html :
 
-`&lt;img [src]="wordImageUrl"&gt;`
-
+    &lt;img [src]="wordImageUrl"&gt;
 
 Propriétés de composant :
 
-`&lt;word [word]="currentWord"&gt;&lt;/word&gt;`
+    &lt;word [word]="currentWord"&gt;&lt;/word&gt;
 
 Propriétés de directives :
 
-`&lt;div appDraggable [data]="grapheme"&gt;`
+    &lt;div appDraggable [data]="grapheme"&gt;
 
 -----
 
@@ -204,15 +244,15 @@ Propriétés de directives :
 
 Évenement du dom :
 
-`&lt;button (click)="onSave()"&gt;Save&lt;/button&gt;`
+    &lt;button (click)="onSave()"&gt;Save&lt;/button&gt;
 
 Évenement de composant :
 
-`&lt;word-grapheme (founded)="onFound()"&gt;&lt;/word-grapheme&gt;`
+    &lt;word-grapheme (founded)="onFound()"&gt;&lt;/word-grapheme&gt;
 
 Évenement de directives :
 
-`&lt;div appDroppable (dropped)="onDrop(grapheme)"&gt;`
+    &lt;div appDroppable (dropped)="onDrop(grapheme)"&gt;
 
 -----
 
@@ -220,15 +260,15 @@ Propriétés de directives :
 
 Sur attributs (l'exception) :
 
-`&lt;button [attr.aria-label]="help"&gt;help&lt;/button&gt;`
+    &lt;button [attr.aria-label]="help"&gt;help&lt;/button&gt;
 
 Activation conditionnel d'une classe CSS :
 
-`&lt;div [class.special]="isSpecial"&gt;Special&lt;/div&gt;`
+    &lt;div [class.special]="isSpecial"&gt;Special&lt;/div&gt;
 
 Définition d'une propriété de style :
 
-`&lt;div [style.color]="grapheme.color"&gt;`
+    &lt;div [style.color]="grapheme.color"&gt;
 
 -----
 
@@ -238,22 +278,21 @@ Ne pas oublier les `()` et `[]`
 
 Sauf pour binding statique :
 
-`&lt;word word="pamplemousse.jpg"&gt;&lt;/word&gt;
+    &lt;word word="pamplemousse.jpg"&gt;&lt;/word&gt;
 
 Ou en utilisant l'interpolation :
 
-`&lt;img src="{{imageUrl}}"&gt;`
+    &lt;img src="{{imageUrl}}"&gt;
 
 -----
 
 # Two way data binding #1
 
-`&lt;input [(ngModel)]="child.name"&gt;`
+    &lt;input [(ngModel)]="child.name"&gt;
 
 Sucre syntaxique
 
 Un input `[]` et un event `()`
-
 
 -----
 
@@ -261,11 +300,11 @@ Un input `[]` et un event `()`
 
 Event doit avoir même nom que propriété + `Change`
 
-`&lt;app-sizer [(size)]="fontSizePx"&gt;`
+    &lt;app-sizer [(size)]="fontSizePx"&gt;
 
-egale
+egal
 
-`&lt;app-sizer [size]="fontSizePx" (sizeChange)="fontSizePx=$event"&gt;`
+    &lt;app-sizer [size]="fontSizePx" (sizeChange)="fontSizePx=$event"&gt;
 
 -----
 
@@ -275,21 +314,55 @@ Peuvent être créées
 
 `ngClass` et `ngStyle` built-in pour l'activation de plusieurs class css et styles
 
-`&lt;div [ngClass]="currentClasses"&gt;`
+    &lt;div [ngClass]="currentClasses"&gt;
 
 `ngModel` two-way binding des `input`
 
-`&lt;input [(ngModel)]="child.name"&gt;`
+    &lt;input [(ngModel)]="child.name"&gt;
 
 -----
 
-# Structural directives
+# Structural directives #1
 
-`ngIf`
+ngIf
 
-`ngFor`
+    &lt;word *ngIf="currentWord"&gt;
 
-`ngSwitch`
+
+ngFor
+
+    &lt;div *ngFor="let wordGrapheme of word.graphemes"&gt;
+
+-----
+
+# Structural directives #2
+
+ngSwitch
+
+    &lt;div [ngSwitch]="currentHero.emotion"&gt;
+      &lt;happy *ngSwitchCase="'happy'" [hero]="currentHero"&gt;&lt;/happy&gt;
+      &lt;sad *ngSwitchCase="'sad'" [hero]="currentHero"&gt;&lt;/sad&gt;
+      &lt;conf *ngSwitchCase="'confused'" [hero]="currentHero"&gt;&lt;/conf&gt;
+      &lt;unknown *ngSwitchDefault [hero]="currentHero"&gt;&lt;/unknown&gt;
+    &lt;/div&gt;
+
+-----
+
+# Structural directives #3
+
+Attention au signe `*` !
+
+    &lt;li *ngFor="let contact of contacts"&gt;
+      &lt;contact-card [contact]="contact"&gt;&lt;/contact-card&gt;
+    &lt;/li&gt;
+
+devient
+
+    &lt;ng-template ngFor let-contact [ngForOf]="contacts"&gt;
+      &lt;li&gt;
+        &lt;contact-card [contact]="contact"&gt;&lt;/contact-card&gt;
+      &lt;/li&gt;
+    &lt;/ng-template&gt;
 
 -----
 
@@ -297,7 +370,11 @@ Peuvent être créées
 
 Variables locales
 
+    &lt;div *ngFor="let wordGrapheme of word.graphemes"&gt;
+
 Variables "référence" `#var`
+
+    &lt;input #phone placeholder="phone number"&gt;
 
 -----
 
