@@ -5,6 +5,7 @@ import {
   LanguageGraphemes
 } from "../grapheme/grapheme.service";
 import { WordGrapheme } from "../word-grapheme/word-grapheme.model";
+import { GraphemeType } from "../grapheme/grapheme.model";
 
 @Injectable()
 export class WordGraphemeService {
@@ -16,12 +17,12 @@ export class WordGraphemeService {
 
   private getWordGraphemeType(description) {
     if (description.length > 1 && !description.includes("_")) {
-      return "complex";
+      return GraphemeType.complex;
     }
     const isVowel = this.graphemes.vowels.some(
       v => v.representation === description.charAt(0)
     );
-    return isVowel ? "vowel" : "consonant";
+    return isVowel ? GraphemeType.vowel : GraphemeType.consonant;
   }
 
   // graphems that sounds differently contains a '_'

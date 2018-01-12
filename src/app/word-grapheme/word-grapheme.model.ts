@@ -1,8 +1,8 @@
-import { Grapheme } from "../grapheme/grapheme.model";
+import { Grapheme, GraphemeType } from "../grapheme/grapheme.model";
 
 export class WordGrapheme extends Grapheme {
   constructor(
-    graphemeType: string,
+    graphemeType: GraphemeType,
     // a word grapheme has only one phonem
     phonem: string,
     representation: string,

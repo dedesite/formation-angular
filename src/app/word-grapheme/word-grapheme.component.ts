@@ -20,7 +20,7 @@ export class WordGraphemeComponent extends GraphemeComponent {
     if (!this.grapheme.isMute) {
       return super.playPhonemSound();
     }
-    return Promise.resolve({});
+    return Promise.resolve();
   }
 
   onDrop(droppedGrapheme: any, wordGrapheme: WordGrapheme) {
