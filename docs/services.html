@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Formation Angular | Andréas Livet pour OpenSka</title>
+  <link href="css/highlight.min.css" rel="stylesheet">
+  <link href="css/markdown-slides.css" rel="stylesheet" />
+  <link href="css/devopsy.css" rel="stylesheet" />
+  <link href="css/effects.css" rel="stylesheet" />
+</head>
+<body>
+<div id="impress" data-transition-duration="1000">
+
+<div id="markdown" class="step slide markdown" data-rel-x="0" data-rel-y="900">
+# Angular 5
+## Les Services
+
+-----
+
+# Declaration
+
+    @Injectable()
+
+-----
+
+# Module `providers`
+
+    @NgModule({
+      declarations: [
+        // ..
+      ],
+      imports: [BrowserModule],
+      providers: [GraphemeService],
+      // ..
+    })
+
+-----
+
+# Class `providers`
+
+    @Component({
+       selector: "dictation",
+       providers: [GraphemeService],
+       templateUrl: "./dictation.component.html",
+       styleUrls: ["./dictation.component.css"]
+    })
+    export class DictationComponent {
+
+-----
+
+# Injection de dépendance
+
+    constructor(private graphemeService: GraphemeService)
+
+-----
+
+# Service de données
+## Déclaration
+
+    // ..
+    import { HttpClient } from "@angular/common/http";
+    // ..
+
+    getWords(): Observable<Word[]> {
+      return this.http.get<wordsDesc>("/assets/data/words-fr.json").pipe(
+        map(data => {
+          return data.words.map(wordDesc => {
+            return this.createWordFromDescription(wordDesc);
+          });
+        })
+      )
+    }
+
+-----
+
+# Service de données
+## Utilisation
+    ngOnInit() {
+      this.wordService.getWords().subscribe(words => {
+        this.words = words;
+        this.setRandomCurrentWord();
+      });
+    }
+
+</div>
+</div>
+<script type="text/javascript" src="js/highlight.min.js"></script>
+<script type="text/javascript" src="js/mermaid.min.js"></script>
+<script type="text/javascript" src="js/markdown.js"></script>
+<script type="text/javascript" src="js/impress.js"></script>
+<script>impress().init();</script>
+</body>
+</html>
