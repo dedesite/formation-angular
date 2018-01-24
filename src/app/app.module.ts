@@ -18,6 +18,9 @@ import { RevealButtonComponent } from "./reveal-button/reveal-button.component";
 import { BoardSwitchComponent } from "./board-switch/board-switch.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ChildImgComponent } from "./child-img/child-img.component";
+import { ChildComponent } from "./child/child.component";
+import { AdminChildComponent } from "./admin-child/admin-child.component";
+import { LevelSelectorComponent } from "./level-selector/level-selector.component";
 
 import { GraphemeService } from "./grapheme/grapheme.service";
 import { WordGraphemeService } from "./word-grapheme/word-grapheme.service";
@@ -27,8 +30,6 @@ import { ChildService } from "./child/child.service";
 
 import { DroppableDirective } from "./dnd/droppable.directive";
 import { DraggableDirective } from "./dnd/draggable.directive";
-import { ChildComponent } from "./child/child.component";
-import { AdminChildComponent } from './admin-child/admin-child.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AdminChildComponent } from './admin-child/admin-child.component';
     DashboardComponent,
     ChildImgComponent,
     ChildComponent,
-    AdminChildComponent
+    AdminChildComponent,
+    LevelSelectorComponent
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [

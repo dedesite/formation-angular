@@ -21,6 +21,8 @@ export class ChildComponent implements OnInit {
     successCount: 0
   };
 
+  submitMsg: string = "Créer";
+
   constructor(
     private route: ActivatedRoute,
     private childService: ChildService,
@@ -30,20 +32,31 @@ export class ChildComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get("id");
     if (id !== null) {
-      this.childService.getChild(+id).subscribe(child => (this.child = child));
+      this.childService.getChild(+id).subscribe(child => {
+        this.child = child;
+        this.submitMsg = "Modifier";
+      });
     }
   }
 
-  onCreate() {
+  create() {
     this.childService.addChild(this.child).subscribe(child => {
       this.goBack();
     });
   }
 
-  onSave() {
+  save() {
     this.childService.saveChild(this.child).subscribe(child => {
       this.goBack();
     });
+  }
+
+  onSubmit() {
+    if (this.child.id !== -1) {
+      this.save();
+    } else {
+      this.create();
+    }
   }
 
   goBack(): void {

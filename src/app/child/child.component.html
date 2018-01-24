@@ -1,15 +1,23 @@
 <div class="container">
   <icon-button name="arrow-thick-left" (click)="goBack()"></icon-button>
   <div>
-    <label>name:
-      <input [(ngModel)]="child.name" placeholder="name">
-    </label>
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary">Petit</button>
-      <button type="button" class="btn btn-secondary">Moyen</button>
-      <button type="button" class="btn btn-secondary">Grand</button>
-    </div>
+    <h1>{{child.name}}</h1>
+    <form (ngSubmit)="onSubmit()" #childForm="ngForm">
+      <p>
+        <label for="name">Nom :
+          <input [(ngModel)]="child.name"
+          placeholder="Louane"
+          id="name"
+          name="name"
+          required>
+        </label>
+      </p>
+      <p>
+        <label for="level">Niveau :
+          <level-selector [(level)]="child.level" id="level" name="level"></level-selector>
+        </label>
+      </p>
+      <button [disabled]="!childForm.form.valid" type="submit">{{submitMsg}}</button>
+    </form>
   </div>
-  <button *ngIf="child.id === -1" (click)="onCreate()">Créer</button>
-  <button *ngIf="child.id !== -1" (click)="onSave()">Enrigistrer</button>
 </div>
