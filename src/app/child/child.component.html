@@ -1,23 +1,30 @@
-<div class="container">
-  <icon-button name="arrow-thick-left" (click)="goBack()"></icon-button>
-  <div>
-    <h1>{{child.name}}</h1>
-    <form (ngSubmit)="onSubmit()" #childForm="ngForm">
-      <p>
-        <label for="name">Nom :
-          <input [(ngModel)]="child.name"
-          placeholder="Louane"
-          id="name"
-          name="name"
-          required>
-        </label>
-      </p>
-      <p>
-        <label for="level">Niveau :
-          <level-selector [(level)]="child.level" id="level" name="level"></level-selector>
-        </label>
-      </p>
-      <button [disabled]="!childForm.form.valid" type="submit">{{submitMsg}}</button>
-    </form>
-  </div>
+<icon-button name="arrow-thick-left" (click)="goBack()"></icon-button>
+<div>
+  <h1>{{child.name}}</h1>
+  <form (ngSubmit)="onSubmit()" #childForm="ngForm">
+    <p>
+      <label for="name">Nom :
+        <input [(ngModel)]="child.name"
+        type="text"
+        placeholder="Louane"
+        id="name"
+        name="name"
+        required>
+      </label>
+    </p>
+    <p>
+      <label for="level">Niveau :
+        <level-selector [level]="child.level" (levelChange)="onLevelUpdate($event)" id="level" name="level"></level-selector>
+      </label>
+    </p>
+    <p>
+      <label for="evolution-auto">Change de niveau tout seul :
+        <input [(ngModel)]="child.evolutionAuto"
+        type="checkbox"
+        id="evolution-auto"
+        name="evolution-auto">
+      </label>
+    </p>
+    <button [disabled]="!childForm.form.valid" type="submit">{{submitMsg}}</button>
+  </form>
 </div>
