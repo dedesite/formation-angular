@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
+import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
-import { map } from "rxjs/operators";
 
 import { Word } from "./word.model";
 import { WordGrapheme } from "../word-grapheme/word-grapheme.model";
@@ -28,12 +28,10 @@ export class WordService {
     return new Word(wordGr);
   }
   getWords(): Observable<Word[]> {
-    return this.http.get<wordsDesc>("/assets/data/words-fr.json").pipe(
-      map(data => {
-        return data.words.map(wordDesc => {
-          return this.createWordFromDescription(wordDesc);
-        });
-      })
-    );
+    return this.http.get<wordsDesc>("/assets/data/words-fr.json").map(data => {
+      return data.words.map(wordDesc => {
+        return this.createWordFromDescription(wordDesc);
+      });
+    });
   }
 }

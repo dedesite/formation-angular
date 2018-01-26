@@ -1,38 +1,37 @@
-<div class="container">
-  <div class="row no-gutters row-margin-top">
-    <div class="col-1">
-      <div class="text-center" *ngIf="currentChild"><child-img [name]="currentChild.name" link="/"></child-img></div>
-    </div>
-    <div class="col-4"></div>
-    <div class="col-2">
-      <div class="text-center">
-        <word-img
-          *ngIf="currentWord" [name]="currentWord.fileName" [word]="currentWord">
-        </word-img>
-      </div>
-    </div>
-    <div class="col-1"></div>
-    <div class="col-1">
-      <icon-button name="grid-two-up"></icon-button>
-    </div>
-    <div class="col-1">
-      <icon-button name="random" (click)="setRandomCurrentWord()"></icon-button>
-    </div>
-    <div class="col-2">
-      <reveal-button></reveal-button>
+<div class="row no-gutters row-margin-top">
+  <div class="col-1">
+    <div class="text-center" *ngIf="currentChild"><child-img [name]="currentChild.name" link="/"></child-img></div>
+  </div>
+  <div class="col-4"></div>
+  <div class="col-2">
+    <div class="text-center">
+      <word-img
+        *ngIf="currentWord" [name]="currentWord.fileName" [word]="currentWord">
+      </word-img>
     </div>
   </div>
-  <word *ngIf="currentWord" [word]="currentWord" (founded)="onWordFound($event)"></word>
+  <div class="col-1"></div>
+  <div class="col-1">
+    <icon-button name="grid-two-up"></icon-button>
+  </div>
+  <div class="col-1">
+    <icon-button name="random" (click)="setRandomCurrentWord()"></icon-button>
+  </div>
+  <div class="col-2">
+    <reveal-button></reveal-button>
+  </div>
+</div>
+<word *ngIf="currentWord" [word]="currentWord" (founded)="onWordFound($event)"></word>
+<div
+  *ngFor="let row of [0, 1, 2]"
+  class="row no-gutters grapheme-row justify-content-center">
   <div
-    *ngFor="let row of [0, 1, 2]"
-    class="row no-gutters grapheme-row justify-content-center">
-    <div
-      *ngFor="let grapheme of graphemeRow(row)"
-      class="col-1 box">
-      <board-grapheme class="in-box" [grapheme]="grapheme"></board-grapheme>
-    </div>
+    *ngFor="let grapheme of graphemeRow(row)"
+    class="col-1 box">
+    <board-grapheme class="in-box" [grapheme]="grapheme"></board-grapheme>
   </div>
-  <div class="text-center row-margin-top">
-    <board-switch [graphemeType]="boardGraphemesType" (switch)="switchBoardGraphemes()"></board-switch>
-  </div>
+</div>
+<div *ngIf="currentConfig && currentConfig.areComplexGraphemesGrouped"
+  class="text-center row-margin-top">
+  <board-switch [graphemeType]="boardGraphemesType" (switch)="switchBoardGraphemes()"></board-switch>
 </div>

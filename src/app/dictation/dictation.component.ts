@@ -13,6 +13,8 @@ import { Word } from "../word/word.model";
 import { WordService } from "../word/word.service";
 import { ChildService } from "../child/child.service";
 import { Child } from "../child/child.model";
+import { ConfigService } from "../config/config.service";
+import { Config } from "../config/config.model";
 
 @Component({
   selector: "dictation",
@@ -21,6 +23,7 @@ import { Child } from "../child/child.model";
 })
 export class DictationComponent implements OnInit {
   currentChild: Child;
+  currentConfig: Config;
   currentWord: Word;
   words: Word[];
   graphemes: LanguageGraphemes;
@@ -32,6 +35,7 @@ export class DictationComponent implements OnInit {
     private wordService: WordService,
     private childService: ChildService,
     private soundService: SoundService,
+    private configService: ConfigService,
     private route: ActivatedRoute,
     private location: Location
   ) {}
@@ -40,9 +44,13 @@ export class DictationComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get("id");
 
     if (id !== null) {
-      this.childService
-        .getChild(+id)
-        .subscribe(child => (this.currentChild = child));
+      this.childService.getChild(+id).subscribe(child => {
+        this.currentChild = child;
+        // TODO : get child's config inside childService
+        this.configService
+          .getConfig(child.configId)
+          .subscribe(config => (this.currentConfig = config));
+      });
     }
 
     this.graphemes = this.graphemeService.getGraphemes();

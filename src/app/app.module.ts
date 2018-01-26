@@ -21,12 +21,16 @@ import { ChildImgComponent } from "./child-img/child-img.component";
 import { ChildComponent } from "./child/child.component";
 import { AdminChildComponent } from "./admin-child/admin-child.component";
 import { LevelSelectorComponent } from "./level-selector/level-selector.component";
+import { ConfigComponent } from "./config/config.component";
+import { AdminComponent } from "./admin/admin.component";
+import { AdminConfigComponent } from "./admin-config/admin-config.component";
 
 import { GraphemeService } from "./grapheme/grapheme.service";
 import { WordGraphemeService } from "./word-grapheme/word-grapheme.service";
 import { WordService } from "./word/word.service";
 import { SoundService } from "./sound/sound.service";
 import { ChildService } from "./child/child.service";
+import { ConfigService } from "./config/config.service";
 
 import { DroppableDirective } from "./dnd/droppable.directive";
 import { DraggableDirective } from "./dnd/draggable.directive";
@@ -50,7 +54,10 @@ import { DraggableDirective } from "./dnd/draggable.directive";
     ChildImgComponent,
     ChildComponent,
     AdminChildComponent,
-    LevelSelectorComponent
+    LevelSelectorComponent,
+    ConfigComponent,
+    AdminComponent,
+    AdminConfigComponent
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [
@@ -58,7 +65,8 @@ import { DraggableDirective } from "./dnd/draggable.directive";
     WordGraphemeService,
     WordService,
     SoundService,
-    ChildService
+    ChildService,
+    ConfigService
   ],
   bootstrap: [AppComponent]
 })

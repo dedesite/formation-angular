@@ -6,8 +6,7 @@ import { ChildService } from "../child/child.service";
 
 @Component({
   selector: "admin-child",
-  templateUrl: "./admin-child.component.html",
-  styleUrls: ["./admin-child.component.css"]
+  templateUrl: "./admin-child.component.html"
 })
 export class AdminChildComponent implements OnInit {
   children: Child[];

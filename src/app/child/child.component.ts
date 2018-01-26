@@ -11,15 +11,7 @@ import { ChildService } from "./child.service";
   styleUrls: ["./child.component.css"]
 })
 export class ChildComponent implements OnInit {
-  @Input()
-  child: Child = {
-    // Server determines the id
-    id: -1,
-    name: "",
-    level: ChildLevel.petit,
-    attemptCount: 0,
-    successCount: 0
-  };
+  @Input() child: Child = new Child();
 
   submitMsg: string = "Créer";
 
@@ -49,6 +41,14 @@ export class ChildComponent implements OnInit {
     this.childService.saveChild(this.child).subscribe(child => {
       this.goBack();
     });
+  }
+
+  onLevelUpdate(level) {
+    this.child.level = level;
+    // If child has no specific level
+    if (this.child.configId <= ChildLevel.grand) {
+      this.child.configId = level;
+    }
   }
 
   onSubmit() {

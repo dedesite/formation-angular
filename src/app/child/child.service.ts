@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
+import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
-import { map } from "rxjs/operators";
 
 import { Child } from "./child.model";
 
@@ -19,7 +19,7 @@ export class ChildService {
   getChildren(): Observable<Child[]> {
     return this.http
       .get<Child[]>(this.childrenUrl)
-      .pipe(map(children => children as Child[]));
+      .map(children => children as Child[]);
   }
 
   getChild(id: number): Observable<Child> {
