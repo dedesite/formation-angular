@@ -21,14 +21,14 @@
     <reveal-button></reveal-button>
   </div>
 </div>
-<word *ngIf="currentWord" [config]="currentConfig" [word]="currentWord" (founded)="onWordFound($event)"></word>
+<word *ngIf="currentWord" [word]="currentWord" (founded)="onWordFound($event)"></word>
 <div
   *ngFor="let row of [0, 1, 2]"
   class="row no-gutters grapheme-row justify-content-center">
   <div
     *ngFor="let grapheme of graphemeRow(row)"
     class="col-1 box">
-    <board-grapheme class="in-box" [grapheme]="grapheme" [config]="currentConfig"></board-grapheme>
+    <board-grapheme class="in-box" [grapheme]="grapheme"></board-grapheme>
   </div>
 </div>
 <div *ngIf="currentConfig && currentConfig.areComplexGraphemesGrouped"
