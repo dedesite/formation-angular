@@ -19,9 +19,13 @@ export class WordComponent {
     const self = this;
     const currentGrapheme = this.word.graphemes[graphemeIndex];
     if (currentGrapheme) {
+      if (currentGrapheme.isMute) {
+        return self.playAllPhonems(graphemeIndex + 1);
+      }
       return this.soundService
         .playSound(`phonems/${currentGrapheme.phonems[0]}`)
-        .then(() => self.playAllPhonems(graphemeIndex + 1));
+        .then(() => self.playAllPhonems(graphemeIndex + 1))
+        .catch(e => console.error(e));
     }
   }
 
@@ -37,7 +41,8 @@ export class WordComponent {
         })
         .then(() => {
           this.founded.emit(this.word);
-        });
+        })
+        .catch(e => console.error(e));
     }
   }
 }
