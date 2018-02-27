@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 
 @Directive({
   selector: "[appDraggable]"
@@ -6,23 +6,23 @@ import { Directive, ElementRef, Input } from "@angular/core";
 export class DraggableDirective {
   @Input() data: any;
 
-  constructor(el: ElementRef) {
-    let nativeEl = el.nativeElement;
+  constructor(private el: ElementRef) {
+    this.el.nativeElement.draggable = "true";
+  }
 
-    nativeEl.draggable = "true";
-    // Set up the dragstart event and add the drag-src CSS class
-    // to change the visual appearance. Set the current todo as the data
-    // payload by stringifying the object first
-    nativeEl.addEventListener("dragstart", e => {
-      nativeEl.classList.add("drag-src");
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.setData("text", JSON.stringify(this.data));
-    });
+  // Set up the dragstart event and add the drag-src CSS class
+  // to change the visual appearance.
+  @HostListener("dragstart", ["$event"])
+  onDragStart(e) {
+    this.el.nativeElement.classList.add("drag-src");
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text", JSON.stringify(this.data));
+  }
 
-    // Remove the drag-src class
-    nativeEl.addEventListener("dragend", e => {
-      e.preventDefault();
-      nativeEl.classList.remove("drag-src");
-    });
+  // Remove the drag-src class
+  @HostListener("dragend", ["$event"])
+  onDragEnd(e) {
+    e.preventDefault();
+    this.el.nativeElement.classList.remove("drag-src");
   }
 }
